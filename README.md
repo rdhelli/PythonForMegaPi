@@ -6,11 +6,16 @@
  git clone https://github.com/Makeblock-Official/PythonForMegaPi
  ```
  * ```
- import lib.megapi from *
+import lib.megapi from *
+bot = MegaPi()
+bot.start()
  ``` in your python code.
  * python your code
 
 ## Python API
+ * Start
+ 	* MegaPi()
+ 	* start()
  * Motion
 	* DC Motor
 	  * **dcMotorRun**( port, speed )
