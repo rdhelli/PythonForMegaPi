@@ -7,7 +7,7 @@
  ```
  * Insert the initial code for starting MegaPi first.
 ```
- import lib.megapi from *
+ from lib.megapi import *
  bot = MegaPi()
  bot.start()
  ```
