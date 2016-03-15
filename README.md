@@ -8,9 +8,7 @@
  * Insert the initial code for starting MegaPi first.
 ```
  import lib.megapi from *
- 
  bot = MegaPi()
- 
  bot.start()
  ```
  * python your code
@@ -19,6 +17,11 @@
  * Start
  	* MegaPi()
  	* start()
+ * GPIO
+ 	* digitalWrite( pin, level )
+ 	* pwmWrite( pin, pwm )
+ 	* digitalRead( pin, **def** onResult )
+ 	* analogRead( pin, **def** onResult )
  * Motion
 	* DC Motor
 	  * **dcMotorRun**( port, speed )
@@ -34,5 +37,27 @@
 	  * **encoderMotorMoveTo**( port, speed, position, **def** onFinish )
 	  
  * Sensors
- 
+ 	* Ultrasonic Sensor
+ 	* LineFollow Sensor
+ 	* Light Sensor
+ 	* Sound Sensor
+ 	* Temperature Sensor
+ 	* PIR Motion Sensor
+ 	* Touch Sensor
+ 	* LimitSwitch
+ 	* Humiture Sensor
+ 	* Gas Sensor
+ 	* Flame Sensor
+ 	* Button
+ 	* Potentiometer
+ 	* Joystick
+ 	* 3-Axis Accelerometer and Gyro Sensor
+ 	* Compass
+ 	
  * Display
+ 	* RGB Led
+ 	* 7-segment Display
+ 	* Led Matrix Display
+ 	* Serial LCD Display
+ * Others
+ 	* DSLR Shutter
