@@ -66,7 +66,9 @@ class MegaPi():
 	def start(self):
 		self.device = mSerial()
 		self.device.start()
-		self.start()
+		sys.excepthook = self.excepthook
+		th = threading.Thread(target=self.__onRead,args=(self.onParse,))
+		th.start()
 		
 	def excepthook(self, exctype, value, traceback):
 		self.close()
