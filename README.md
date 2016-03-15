@@ -5,15 +5,26 @@
  ```
  git clone https://github.com/Makeblock-Official/PythonForMegaPi
  ```
- * write your python code, import megapi
- ```
+ * ```
  import lib.megapi from *
- ```
- * run your code
+ ``` in your python code.
+ * python your code
 
 ## Python API
  * Motion
- 
+	* DC Motor
+	  * **dcMotorRun**( port, speed )
+	* Servo Motor
+	  * **servoRun**( port, angle )
+	* Encoder Motor
+	  * **encoderMotorRun**( port, speed )
+	  * **encoderMotorMove**( port, speed, display, **def** onFinish )
+	  * **encoderMotorMoveTo**( port, speed, position, **def** onFinish )
+	* Stepper Motor
+	  * **stepperMotorRun**( port, speed )
+	  * **encoderMotorMove**( port, speed, display, **def** onFinish )
+	  * **encoderMotorMoveTo**( port, speed, position, **def** onFinish )
+	  
  * Sensors
  
  * Display
