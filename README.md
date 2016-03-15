@@ -75,11 +75,14 @@
  	
  * Display
  	* RGB Led
- 	  * **rgbLedDisplay** ( port, slot, index, r, g, b)
+ 	  * **rgbLedSetColor** ( port, slot, index, r, g, b )
+ 	  * **rgbLedShow** ( port, slot )
+ 	  * **rgbLedDisplay** ( port, slot, index, r, g, b )
  	* 7-segment Display
  	  * **sevenSegmentDisplay** ( port, value )
  	* Led Matrix Display
- 	  * **ledMatrixDisplay** ( port, buffer )
+ 	  * **ledMatrixDisplayMessage** ( port, x, y, msg )
+ 	  * **ledMatrixDisplayRaw** ( port, buffer )
  	* Serial LCD Display
  	  * **lcdDisplay** ( string )
  	  
