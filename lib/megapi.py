@@ -111,9 +111,6 @@ class MegaPi():
 		
 	def analogRead(self,pin,callback):
 		self.__writeRequestPackage(0x1f,pin,callback)	
-	
-	def sevenSegmentDisplay(self,port,display):
-		self.__writePackage(bytearray([0xff,0x55,0x8,0x0,0x2,0x9,port]+self.float2bytes(display)))
 			
 	def lightSensorRead(self,port,callback):
 		self.__writeRequestPackage(4,port,callback)
@@ -199,10 +196,13 @@ class MegaPi():
 	def rgbLedDisplay(self,port,slot,index,red,green,blue):
 		self.__writePackage(bytearray([0xff,0x55,0x9,0x0,0x2,0x8,port,slot,index,red,green,blue]))
 
+	def sevenSegmentDisplay(self,port,display):
+		self.__writePackage(bytearray([0xff,0x55,0x8,0x0,0x2,0x9,port]+self.float2bytes(display)))
+		
 	def ledMatrixDisplay(self,port,buffer):
 		self.__writePackage(bytearray([0xff,0x55,12,0,0x2,41,port]+buffer))
 		
-	def shutterDo(self,extID,port,method):
+	def shutterDo(self, port, method):
 		self.__writePackage(bytearray([0xff,0x55,0x5,0,0x3,20,port,method]))
 		
 	def onParse(self, byte):
