@@ -5,12 +5,25 @@
  ```
  git clone https://github.com/Makeblock-Official/PythonForMegaPi
  ```
- * ```
- import lib.megapi from *
- ``` in your python code.
+ * Insert the initial code for starting MegaPi first.
+```
+ from lib.megapi import *
+ bot = MegaPi()
+ bot.start()
+ ```
  * python your code
 
 ## Python API
+ * Start
+ 	* **MegaPi**()
+ 	* **start**()
+ 	
+ * GPIO
+ 	* **digitalWrite**( pin, level )
+ 	* **pwmWrite**( pin, pwm )
+ 	* **digitalRead**( pin, **def** onResult )
+ 	* **analogRead**( pin, **def** onResult )
+ 	
  * Motion
 	* DC Motor
 	  * **dcMotorRun**( port, speed )
@@ -26,5 +39,49 @@
 	  * **encoderMotorMoveTo**( port, speed, position, **def** onFinish )
 	  
  * Sensors
- 
+ 	* Ultrasonic Sensor
+ 	  * **ultrasonicSensorRead** ( port, **def** onResult ) 
+ 	* LineFollow Sensor
+ 	  * **lineFollowerRead** ( port, **def** onResult ) 
+ 	* Light Sensor
+ 	  * **lightSensorRead** ( port, **def** onResult ) 
+ 	* Sound Sensor
+ 	  * **soundSensorRead** ( port, **def** onResult ) 
+ 	* Temperature Sensor
+ 	  * **temperatureRead** ( port, **def** onResult ) 
+ 	* PIR Motion Sensor
+ 	  * **pirMotionSensorRead** ( port, **def** onResult ) 
+ 	* Touch Sensor
+ 	  * **touchSensorRead** ( port, **def** onResult ) 
+ 	* LimitSwitch
+ 	  * **limitSwitchRead** ( port, **def** onResult ) 
+ 	* Humiture Sensor
+ 	  * **humitureSensorRead** ( port, type, **def** onResult ) 
+ 	* Gas Sensor
+ 	  * **gasSensorRead** ( port, **def** onResult )
+ 	* Flame Sensor
+ 	  * **flameSensorRead** ( port, **def** onResult ) 
+ 	* Button
+ 	  * **buttonRead** ( port, **def** onResult ) 
+ 	* Potentiometer
+ 	  * **potentiometerRead** ( port, **def** onResult )
+ 	* Joystick
+ 	  * **joystickRead** ( port, axis, **def** onResult )
+ 	* 3-Axis Accelerometer and Gyro Sensor
+ 	  * **gyroRead** ( axis, **def** onResult )
+ 	* Compass
+ 	  * **compassRead** ( **def** onResult )
+ 	
  * Display
+ 	* RGB Led
+ 	  * **rgbLedDisplay** ( port, slot, index, r, g, b)
+ 	* 7-segment Display
+ 	  * **sevenSegmentDisplay** ( port, value )
+ 	* Led Matrix Display
+ 	  * **ledMatrixDisplay** ( port, buffer )
+ 	* Serial LCD Display
+ 	  * **lcdDisplay** ( string )
+ 	  
+ * Others
+ 	* DSLR Shutter
+	  * **shutterDo** ( port, method )
