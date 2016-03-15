@@ -55,7 +55,7 @@
  	* Touch Sensor
  	  * **touchSensorRead** ( port, **def** onResult ) 
  	* LimitSwitch
- 	  * **limitSwitchRead** ( port, **def** onResult ) 
+ 	  * **limitSwitchRead** ( port, slot, **def** onResult ) 
  	* Humiture Sensor
  	  * **humitureSensorRead** ( port, type, **def** onResult ) 
  	* Gas Sensor
