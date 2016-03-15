@@ -71,11 +71,6 @@ class MegaPi():
 	def excepthook(self, exctype, value, traceback):
 		self.close()
 		
-	def start(self):
-		sys.excepthook = self.excepthook
-		th = threading.Thread(target=self.__onRead,args=(self.onParse,))
-		th.start()
-		
 	def close(self):
 		self.device.close()
 		
