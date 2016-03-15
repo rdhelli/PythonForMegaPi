@@ -15,13 +15,15 @@
 
 ## Python API
  * Start
- 	* MegaPi()
- 	* start()
+ 	* **MegaPi**()
+ 	* **start**()
+ 	
  * GPIO
- 	* digitalWrite( pin, level )
- 	* pwmWrite( pin, pwm )
- 	* digitalRead( pin, **def** onResult )
- 	* analogRead( pin, **def** onResult )
+ 	* **digitalWrite**( pin, level )
+ 	* **pwmWrite**( pin, pwm )
+ 	* **digitalRead**( pin, **def** onResult )
+ 	* **analogRead**( pin, **def** onResult )
+ 	
  * Motion
 	* DC Motor
 	  * **dcMotorRun**( port, speed )
@@ -79,6 +81,7 @@
  	  * **ledMatrixDisplay** ( port, buffer )
  	* Serial LCD Display
  	  * **lcdDisplay** ( string )
+ 	  
  * Others
  	* DSLR Shutter
 	  * **shutterDo** ( port, method )
