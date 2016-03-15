@@ -5,11 +5,14 @@
  ```
  git clone https://github.com/Makeblock-Official/PythonForMegaPi
  ```
- * ```
-import lib.megapi from *
-bot = MegaPi()
-bot.start()
- ``` in your python code.
+ *  In your python code, insert the init code for start MegaPi first.
+```
+ import lib.megapi from *
+ 
+ bot = MegaPi()
+ 
+ bot.start()
+ ```
  * python your code
 
 ## Python API
