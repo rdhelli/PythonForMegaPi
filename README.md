@@ -34,9 +34,10 @@
 	  * **encoderMotorMove**( port, speed, display, **def** onFinish )
 	  * **encoderMotorMoveTo**( port, speed, position, **def** onFinish )
 	* Stepper Motor
+	  * **stepperMotorSetting**( port, microsteps, acceleration )
 	  * **stepperMotorRun**( port, speed )
-	  * **encoderMotorMove**( port, speed, display, **def** onFinish )
-	  * **encoderMotorMoveTo**( port, speed, position, **def** onFinish )
+	  * **stepperMotorMove**( port, speed, display, **def** onFinish )
+	  * **stepperMotorMoveTo**( port, speed, position, **def** onFinish )
 	  
  * Sensors
  	* Ultrasonic Sensor
