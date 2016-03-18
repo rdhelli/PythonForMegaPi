@@ -211,6 +211,10 @@ class MegaPi():
 		self.__doCallback(extId,callback)
 		self.__writePackage(bytearray([0xff,0x55,0x7,extId,0x2,deviceId,port,0x2]+self.short2bytes(position)))
 	
+	def stepperMotorSetting(self,port,microsteps,acceleration):
+		deviceId = 62
+		self.__writePackage(bytearray([0xff,0x55,0x7,0,0x2,deviceId,port,0x4,microsteps]+self.short2bytes(acceleration)))
+		
 	def stepperMotorPosition(self,port,callback):
 		self.__writeRequestPackage(62,port,1,callback)
 		
