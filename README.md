@@ -31,12 +31,12 @@
 	  * **servoRun**( port, angle )
 	* Encoder Motor
 	  * **encoderMotorRun**( port, speed )
-	  * **encoderMotorMove**( port, speed, display, **def** onFinish )
+	  * **encoderMotorMove**( port, speed, distance, **def** onFinish )
 	  * **encoderMotorMoveTo**( port, speed, position, **def** onFinish )
 	* Stepper Motor
 	  * **stepperMotorSetting**( port, microsteps, acceleration )
 	  * **stepperMotorRun**( port, speed )
-	  * **stepperMotorMove**( port, speed, display, **def** onFinish )
+	  * **stepperMotorMove**( port, speed, distance, **def** onFinish )
 	  * **stepperMotorMoveTo**( port, speed, position, **def** onFinish )
 	  
  * Sensors
