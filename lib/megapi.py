@@ -1,5 +1,5 @@
 import serial
-import sys,time
+import sys,time,math,random
 import signal
 from time import ctime,sleep
 import glob,struct
@@ -150,7 +150,7 @@ class MegaPi():
 		
 	def joystickRead(self,port,axis,callback):
 		deviceId = 5;
-		extId = ((port<<4)+deviceId)&0xff
+		extId = (((port+axis)<<4)+deviceId)&0xff
 		self.__doCallback(extId,callback)
 		self.__writePackage(bytearray([0xff,0x55,0x5,extId,0x1,deviceId,port,axis]))
 		
@@ -178,32 +178,66 @@ class MegaPi():
 	def servoRun(self,port,slot,angle):
 		self.__writePackage(bytearray([0xff,0x55,0x6,0x0,0x2,0xb,port,slot,angle]))
 
-	def encoderMotorRun(self,port,speed):
-		self.__writePackage(bytearray([0xff,0x55,0x6,0,0x2,62,port]+self.short2bytes(speed)))
+	def encoderMotorRun(self,slot,speed):
+		deviceId = 61;
+		self.__writePackage(bytearray([0xff,0x55,0x8,0,0x2,deviceId,0,slot,1]+self.short2bytes(speed)))
 		
-	def encoderMotorMove(self,port,distance):
-		self.__writePackage(bytearray([0xff,0x55,0x7,0,0x2,61,port,0x0]+self.short2bytes(distance)))
+	def encoderMotorMove(self,slot,speed,distance,callback):
+		deviceId = 61;
+		extId = ((slot<<4)+deviceId)&0xff
+		self.__doCallback(extId,callback)
+		self.__writePackage(bytearray([0xff,0x55,10,extId,0x2,deviceId,0,slot,2]+self.short2bytes(speed)+self.short2bytes(distance)))
 		
-	def encoderMotorMoveTo(self,port,position):
-		self.__writePackage(bytearray([0xff,0x55,0x7,0,0x2,61,port,0x1]+self.short2bytes(position)))
+	def encoderMotorMoveTo(self,slot,speed,position,callback):
+		deviceId = 61;
+		extId = ((slot<<4)+deviceId)&0xff
+		self.__doCallback(extId,callback)
+		self.__writePackage(bytearray([0xff,0x55,10,extId,0x2,deviceId,0,slot,3]+self.short2bytes(speed)+self.short2bytes(position)))
 		
 	def stepperMotorRun(self,port,speed):
 		self.__writePackage(bytearray([0xff,0x55,0x7,0,0x2,40,port,0x0]+self.short2bytes(speed)))
 		
 	def stepperMotorMove(self,port,distance):
-		self.__writePackage(bytearray([0xff,0x55,0x7,0,0x2,40,port,0x1]+self.short2bytes(distance)))
+		deviceId = 62;
+		extId = ((slot<<4)+deviceId)&0xff
+		self.__doCallback(extId,callback)
+		self.__writePackage(bytearray([0xff,0x55,9,extId,0x2,deviceId,port,2]+self.short2bytes(speed)+self.short2bytes(distance)))
 		
 	def stepperMotorMoveTo(self,port,position):
-		self.__writePackage(bytearray([0xff,0x55,0x7,0,0x2,40,port,0x2]+self.short2bytes(position)))
-		
-	def rgbLedDisplay(self,port,slot,index,red,green,blue):
-		self.__writePackage(bytearray([0xff,0x55,0x9,0x0,0x2,0x8,port,slot,index,red,green,blue]))
+		deviceId = 62;
+		extId = ((slot<<4)+deviceId)&0xff
+		self.__doCallback(extId,callback)
+		self.__writePackage(bytearray([0xff,0x55,9,extId,0x2,deviceId,port,2]+self.short2bytes(speed)+self.short2bytes(position)))
 
-	def ledMatrixDisplay(self,port,buffer):
-		self.__writePackage(bytearray([0xff,0x55,12,0,0x2,41,port]+buffer))
+	def rgbledDisplay(self,port,slot,index,red,green,blue):
+		self.__writePackage(bytearray([0xff,0x55,0x9,0x0,0x2,18,port,slot,index,int(red),int(green),int(blue)]))
+
+	def rgbledShow(self,port,slot):
+		self.__writePackage(bytearray([0xff,0x55,0x5,0x0,0x2,19,port,slot]))
+
+	def sevenSegmentDisplay(self,port,value):
+		self.__writePackage(bytearray([0xff,0x55,0x8,0x0,0x2,9,port]+self.float2bytes(value)))
+
+	def ledMatrixMessage(self,port,x,y,message):
+		arr = list(message);
+		for i in range(len(arr)):
+			arr[i] = ord(arr[i]);
+		self.__writePackage(bytearray([0xff,0x55,8+len(arr),0,0x2,41,port,1,self.char2byte(x),self.char2byte(7-y),len(arr)]+arr))
+	
+	def ledMatrixDisplay(self,port,x,y,buffer):
+		self.__writePackage(bytearray([0xff,0x55,7+len(buffer),0,0x2,41,port,2,x,7-y]+buffer))
 		
-	def shutterDo(self,extID,port,method):
-		self.__writePackage(bytearray([0xff,0x55,0x5,0,0x3,20,port,method]))
+	def shutterOn(self,port):
+		self.__writePackage(bytearray([0xff,0x55,0x5,0,0x3,20,port,1]))
+
+	def shutterOff(self,port):
+		self.__writePackage(bytearray([0xff,0x55,0x5,0,0x3,20,port,2]))
+
+	def focusOn(self,port):
+		self.__writePackage(bytearray([0xff,0x55,0x5,0,0x3,20,port,3]))
+
+	def focusOff(self,port):
+		self.__writePackage(bytearray([0xff,0x55,0x5,0,0x3,20,port,4]))
 		
 	def onParse(self, byte):
 		position = 0
@@ -226,7 +260,7 @@ class MegaPi():
 					value = self.buffer[position]
 				if type == 2:
 					value = self.readFloat(position)
-					if(value<-255 or value>1023):
+					if(value<-512 or value>1023):
 						value = 0
 				if type == 3:
 					value = self.readShort(position)
@@ -234,7 +268,9 @@ class MegaPi():
 					value = self.readString(position)
 				if type == 5:
 					value = self.readDouble(position)
-				if(type<=5):
+				if type == 6:
+					value = self.readLong(position)
+				if(type<=6):
 					self.responseValue(extID,value)
 				self.buffer = []
 
@@ -255,6 +291,10 @@ class MegaPi():
 		v = [self.buffer[position], self.buffer[position+1],self.buffer[position+2],self.buffer[position+3]]
 		return struct.unpack('<f', struct.pack('4B', *v))[0]
 
+	def readLong(self, position):
+		v = [self.buffer[position], self.buffer[position+1],self.buffer[position+2],self.buffer[position+3]]
+		return struct.unpack('<l', struct.pack('4B', *v))[0]
+		
 	def responseValue(self, extID, value):
 		self.__selectors["callback_"+str(extID)](value)
 		
@@ -268,3 +308,6 @@ class MegaPi():
 	def short2bytes(self,sval):
 		val = struct.pack("h",sval)
 		return [ord(val[0]),ord(val[1])]
+	def char2byte(self,cval):
+		val = struct.pack("b",cval)
+		return ord(val[0])
