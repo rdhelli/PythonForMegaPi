@@ -183,13 +183,13 @@ class MegaPi():
 		deviceId = 61;
 		extId = ((slot<<4)+deviceId)&0xff
 		self.__doCallback(extId,callback)
-		self.__writePackage(bytearray([0xff,0x55,10,extId,0x2,deviceId,0,slot,2]+self.short2bytes(speed)+self.short2bytes(distance)))
+		self.__writePackage(bytearray([0xff,0x55,12,extId,0x2,deviceId,0,slot,2]+self.short2bytes(speed)+self.long2bytes(distance)))
 		
 	def encoderMotorMoveTo(self,slot,speed,position,callback):
 		deviceId = 61;
 		extId = ((slot<<4)+deviceId)&0xff
 		self.__doCallback(extId,callback)
-		self.__writePackage(bytearray([0xff,0x55,10,extId,0x2,deviceId,0,slot,3]+self.short2bytes(speed)+self.short2bytes(position)))
+		self.__writePackage(bytearray([0xff,0x55,12,extId,0x2,deviceId,0,slot,3]+self.short2bytes(speed)+self.long2bytes(position)))
 		
 	
 	def encoderMotorPosition(self,slot,callback):
@@ -205,13 +205,13 @@ class MegaPi():
 		deviceId = 62;
 		extId = ((slot<<4)+deviceId)&0xff
 		self.__doCallback(extId,callback)
-		self.__writePackage(bytearray([0xff,0x55,9,extId,0x2,deviceId,port,2]+self.short2bytes(speed)+self.short2bytes(distance)))
+		self.__writePackage(bytearray([0xff,0x55,11,extId,0x2,deviceId,port,2]+self.short2bytes(speed)+self.long2bytes(distance)))
 		
 	def stepperMotorMoveTo(self,port,position):
 		deviceId = 62;
 		extId = ((slot<<4)+deviceId)&0xff
 		self.__doCallback(extId,callback)
-		self.__writePackage(bytearray([0xff,0x55,9,extId,0x2,deviceId,port,3]+self.short2bytes(speed)+self.short2bytes(position)))
+		self.__writePackage(bytearray([0xff,0x55,11,extId,0x2,deviceId,port,3]+self.short2bytes(speed)+self.long2bytes(position)))
 
 	def rgbledDisplay(self,port,slot,index,red,green,blue):
 		self.__writePackage(bytearray([0xff,0x55,0x9,0x0,0x2,18,port,slot,index,int(red),int(green),int(blue)]))
@@ -307,6 +307,10 @@ class MegaPi():
 
 	def float2bytes(self,fval):
 		val = struct.pack("f",fval)
+		return [ord(val[0]),ord(val[1]),ord(val[2]),ord(val[3])]
+
+	def long2bytes(self,lval):
+		val = struct.pack("=l",lval)
 		return [ord(val[0]),ord(val[1]),ord(val[2]),ord(val[3])]
 
 	def short2bytes(self,sval):
