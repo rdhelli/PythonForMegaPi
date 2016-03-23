@@ -111,9 +111,6 @@ class MegaPi():
 		
 	def analogRead(self,pin,callback):
 		self.__writeRequestPackage(0x1f,pin,callback)	
-	
-	def sevenSegmentDisplay(self,port,display):
-		self.__writePackage(bytearray([0xff,0x55,0x8,0x0,0x2,0x9,port]+self.float2bytes(display)))
 			
 	def lightSensorRead(self,port,callback):
 		self.__writeRequestPackage(4,port,callback)
@@ -160,8 +157,8 @@ class MegaPi():
 	def buttonRead(self,port,callback):
 		self.__writeRequestPackage(22,port,callback)
 		
-	def gyroRead(self,extID,callback):
-		self.__writeRequestPackage(6,extID,callback)
+	def gyroRead(self,axis,callback):
+		self.__writeRequestPackage(6,axis,callback)
 		
 	def digitalWrite(self,pin,level):
 		self.__writePackage(bytearray([0xff,0x55,0x5,0x0,0x2,0x1e,pin,level]))
@@ -194,8 +191,15 @@ class MegaPi():
 		self.__doCallback(extId,callback)
 		self.__writePackage(bytearray([0xff,0x55,10,extId,0x2,deviceId,0,slot,3]+self.short2bytes(speed)+self.short2bytes(position)))
 		
+	
+	def encoderMotorPosition(self,slot,callback):
+		self.__writeRequestPackage(61,slot,1,callback)
+		
+	def encoderMotorSpeed(self,slot,callback):
+		self.__writeRequestPackage(61,slot,2,callback)
+
 	def stepperMotorRun(self,port,speed):
-		self.__writePackage(bytearray([0xff,0x55,0x7,0,0x2,40,port,0x0]+self.short2bytes(speed)))
+		self.__writePackage(bytearray([0xff,0x55,0x7,0,0x2,62,port,0x1]+self.short2bytes(speed)))
 		
 	def stepperMotorMove(self,port,distance):
 		deviceId = 62;
@@ -207,7 +211,7 @@ class MegaPi():
 		deviceId = 62;
 		extId = ((slot<<4)+deviceId)&0xff
 		self.__doCallback(extId,callback)
-		self.__writePackage(bytearray([0xff,0x55,9,extId,0x2,deviceId,port,2]+self.short2bytes(speed)+self.short2bytes(position)))
+		self.__writePackage(bytearray([0xff,0x55,9,extId,0x2,deviceId,port,3]+self.short2bytes(speed)+self.short2bytes(position)))
 
 	def rgbledDisplay(self,port,slot,index,red,green,blue):
 		self.__writePackage(bytearray([0xff,0x55,0x9,0x0,0x2,18,port,slot,index,int(red),int(green),int(blue)]))
@@ -238,6 +242,41 @@ class MegaPi():
 
 	def focusOff(self,port):
 		self.__writePackage(bytearray([0xff,0x55,0x5,0,0x3,20,port,4]))
+=======
+	def stepperMotorMove(self,port,distance,callback):
+		deviceId = 62
+		extId = ((port<<4)+deviceId)&0xff
+		self.__doCallback(extId,callback)
+		self.__writePackage(bytearray([0xff,0x55,0x7,extId,0x2,deviceId,port,0x1]+self.short2bytes(distance)))
+		
+	def stepperMotorMoveTo(self,port,position,callback):
+		deviceId = 62
+		extId = ((port<<4)+deviceId)&0xff
+		self.__doCallback(extId,callback)
+		self.__writePackage(bytearray([0xff,0x55,0x7,extId,0x2,deviceId,port,0x2]+self.short2bytes(position)))
+	
+	def stepperMotorSetting(self,port,microsteps,acceleration):
+		deviceId = 62
+		self.__writePackage(bytearray([0xff,0x55,0x7,0,0x2,deviceId,port,0x4,microsteps]+self.short2bytes(acceleration)))
+		
+	def stepperMotorPosition(self,port,callback):
+		self.__writeRequestPackage(62,port,1,callback)
+		
+	def stepperMotorSpeed(self,port,callback):
+		self.__writeRequestPackage(62,port,2,callback)
+		
+	def rgbLedDisplay(self,port,slot,index,red,green,blue):
+		self.__writePackage(bytearray([0xff,0x55,0x9,0x0,0x2,0x8,port,slot,index,red,green,blue]))
+
+	def sevenSegmentDisplay(self,port,display):
+		self.__writePackage(bytearray([0xff,0x55,0x8,0x0,0x2,0x9,port]+self.float2bytes(display)))
+		
+	def ledMatrixDisplay(self,port,buffer):
+		self.__writePackage(bytearray([0xff,0x55,12,0,0x2,41,port]+buffer))
+		
+	def shutterDo(self, port, method):
+		self.__writePackage(bytearray([0xff,0x55,0x5,0,0x3,20,port,method]))
+>>>>>>> 064bd75653c435fd246e3f7d3983737962f7f702
 		
 	def onParse(self, byte):
 		position = 0
