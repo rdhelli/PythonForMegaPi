@@ -28,7 +28,7 @@
 	* DC Motor
 	  * **dcMotorRun**( port, speed )
 	* Servo Motor
-	  * **servoRun**( port, angle )
+	  * **servoRun**( port, slot, angle )
 	* Encoder Motor
 	  * **encoderMotorRun**( port, speed )
 	  * **encoderMotorMove**( port, speed, distance, **def** onFinish )
