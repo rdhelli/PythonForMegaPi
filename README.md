@@ -4,7 +4,7 @@
  * Download the Arduino library for Makeblock https://github.com/Makeblock-official/Makeblock-Libraries/archive/master.zip
  * Copy the makeblock folder to your arduino default library. Your Arduino library folder should now look like this 
    * (on Windows): ```[arduino installation directory]\libraries\makeblock\src```
-   * (On MacOSX): ```[arduino Package Contents]\contents\Jave\libraries\makeblock\src```
+   * (on Mac OSX): ```[arduino Package Contents]\contents\Jave\libraries\makeblock\src```
  * Open Arduino IDE, choose the firmware from Examples.
  ![image](https://raw.githubusercontent.com/Makeblock-official/PythonForMegaPi/master/images/firmware.jpg)
  * Compile and upload your board's firmware to your board
