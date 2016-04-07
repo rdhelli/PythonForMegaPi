@@ -6,7 +6,7 @@
    * (on Windows): ```[arduino installation directory]\libraries\makeblock\src```
    * (On MACOS): ```[arduino Package Contents]\contents\Jave\libraries\makeblock\src```
  * Open Arduino IDE, choose the firmware from Examples.
- ![image](https://github.com/Makeblock-official/PythonForMegaPi/raw/master/images/firmware.jpg)
+ ![image](https://raw.githubusercontent.com/Makeblock-official/PythonForMegaPi/master/images/firmware.jpg)
  * Compile and upload the Firmware to your board
 ###Prepare for Raspberry Pi
  * On your Raspberry Pi, 
