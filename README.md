@@ -7,7 +7,7 @@
    * (On MacOSX): ```[arduino Package Contents]\contents\Jave\libraries\makeblock\src```
  * Open Arduino IDE, choose the firmware from Examples.
  ![image](https://raw.githubusercontent.com/Makeblock-official/PythonForMegaPi/master/images/firmware.jpg)
- * Compile and upload the Firmware to your board
+ * Compile and upload your board's firmware to your board
 
 ### Prepare for Raspberry Pi
  * On your Raspberry Pi, 
@@ -23,11 +23,11 @@
  * python your code
 
 ### Wiring
-* MegaPi
+* using MegaPi
  ![image](https://raw.githubusercontent.com/Makeblock-official/PythonForMegaPi/master/images/megapi.jpg)
-* Pi Shield
+* using Pi Shield
  ![image](https://raw.githubusercontent.com/Makeblock-official/PythonForMegaPi/master/images/baseboard-pi-shield.jpg)
-* USB Cable
+* using USB Cable
  ![image](https://raw.githubusercontent.com/Makeblock-official/PythonForMegaPi/master/images/baseboard-usb-cable.jpg)
 
 ## Python API
