@@ -21,6 +21,7 @@
  bot.start() #if using usb cable, need to change bot.start('/dev/ttyACM0')
  ```
  * python your code
+
 ### Wiring
 * MegaPi
  ![image](https://raw.githubusercontent.com/Makeblock-official/PythonForMegaPi/master/images/megapi.jpg)
