@@ -26,7 +26,8 @@
  	
  * Motion
 	* DC Motor
-	  * **dcMotorRun**( port, speed )
+	  * **motorRun**( port, speed )
+	  * **motorMove**( leftspeed, rightspeed )
 	* Servo Motor
 	  * **servoRun**( port, slot, angle )
 	* Encoder Motor
