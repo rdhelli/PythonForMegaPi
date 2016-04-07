@@ -28,9 +28,9 @@
 ### Wiring
 * using MegaPi
  ![image](https://raw.githubusercontent.com/Makeblock-official/PythonForMegaPi/master/images/megapi.jpg)
-* using Pi Shield
+* using Pi Shield for Me Orion or Me Baseboard
  ![image](https://raw.githubusercontent.com/Makeblock-official/PythonForMegaPi/master/images/baseboard-pi-shield.jpg)
-* using USB Cable
+* using USB Cable for Me Orion or Me Baseboard
  ![image](https://raw.githubusercontent.com/Makeblock-official/PythonForMegaPi/master/images/baseboard-usb-cable.jpg)
 
 ## Python API
