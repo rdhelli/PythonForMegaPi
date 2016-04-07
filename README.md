@@ -21,7 +21,7 @@
 ```
  from megapi import *
  bot = MegaPi()
- bot.start() #if using usb cable, need to change bot.start('/dev/ttyACM0')
+ bot.start() #if using usb cable, need to call bot.start('/dev/ttyACM0')
  ```
  * python your code
 
