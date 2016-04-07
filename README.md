@@ -1,6 +1,15 @@
 # Python For MegaPi
 ## How To Use
- * Compile and upload the Firmware to MegaPi ( https://github.com/Makeblock-Official/FirmwareForMegaPi )
+### Prepare for Arduino
+ * Download the Arduino library for Makeblock https://github.com/Makeblock-official/Makeblock-Libraries/archive/master.zip
+ * Copy the makeblock folder to your arduino default library. Your Arduino library folder should now look like this 
+   * (on Windows): ```[arduino installation directory]\libraries\makeblock\src```
+   * (On MacOSX): ```[arduino Package Contents]\contents\Jave\libraries\makeblock\src```
+ * Open Arduino IDE, choose the firmware from Examples.
+ ![image](https://raw.githubusercontent.com/Makeblock-official/PythonForMegaPi/master/images/firmware.jpg)
+ * Compile and upload your board's firmware to your board
+
+### Prepare for Raspberry Pi
  * On your Raspberry Pi, 
  ```
  sudo pip install megapi
@@ -9,9 +18,17 @@
 ```
  from megapi import *
  bot = MegaPi()
- bot.start()
+ bot.start() #if using usb cable, need to change bot.start('/dev/ttyACM0')
  ```
  * python your code
+
+### Wiring
+* using MegaPi
+ ![image](https://raw.githubusercontent.com/Makeblock-official/PythonForMegaPi/master/images/megapi.jpg)
+* using Pi Shield
+ ![image](https://raw.githubusercontent.com/Makeblock-official/PythonForMegaPi/master/images/baseboard-pi-shield.jpg)
+* using USB Cable
+ ![image](https://raw.githubusercontent.com/Makeblock-official/PythonForMegaPi/master/images/baseboard-usb-cable.jpg)
 
 ## Python API
  * Start
