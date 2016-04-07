@@ -17,7 +17,7 @@
  ```
  sudo pip install megapi
  ```
- * Insert the initial code for starting MegaPi first.
+ * the initial code for python.
 ```
  from megapi import *
  bot = MegaPi()
