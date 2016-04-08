@@ -5,9 +5,9 @@
  * Copy the makeblock folder to your arduino default library. Your Arduino library folder should now look like this 
    * (on Windows): ```[x:\Users\XXX\Documents]\Arduino\libraries\makeblock\src```
    * (on Mac OSX): ```[\Users\XXX\Documents]\Arduino\libraries\makeblock\src```
- * Open Arduino IDE, choose the firmware from Examples.
+ * Open Arduino IDE, choose the firmware from <em>File&gt;Examples</em>.
  ![image](https://raw.githubusercontent.com/Makeblock-official/PythonForMegaPi/master/images/firmware.jpg)
- * Compile and upload your board's firmware to your board
+ * Compile and upload firmware according to your board type.
 
 ### Prepare for Raspberry Pi
  * On your Raspberry Pi, disable the login prompt.
@@ -28,7 +28,7 @@
 ### Wiring
 * using MegaPi
  ![image](https://raw.githubusercontent.com/Makeblock-official/PythonForMegaPi/master/images/megapi.jpg)
-* using Pi Shield for Me Orion or Me Baseboard
+* Using Me Shield for Raspberry Pi and RJ25 cable for Me Orion or Me Baseboard.
  ![image](https://raw.githubusercontent.com/Makeblock-official/PythonForMegaPi/master/images/baseboard-pi-shield.jpg)
 * using USB Cable for Me Orion or Me Baseboard
  ![image](https://raw.githubusercontent.com/Makeblock-official/PythonForMegaPi/master/images/baseboard-usb-cable.jpg)
