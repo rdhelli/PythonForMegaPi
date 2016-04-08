@@ -10,7 +10,7 @@
  * Compile and upload firmware according to your board type.
 
 ### Prepare for Raspberry Pi
- * On your Raspberry Pi, disable the login prompt.
+ * On your Raspberry Pi, disable the login prompt from Desktop->Menu->Preferences->Raspberry Pi Configuration.
 
 ![image](https://raw.githubusercontent.com/Makeblock-official/PythonForMegaPi/master/images/serial.jpg)
  * install python library for Makeblock
