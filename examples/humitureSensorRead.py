@@ -9,7 +9,7 @@ def onReadTemperature(temp):
 
 if __name__ == '__main__':
 	bot = MegaPi()
-	bot.start()
+	bot.start('/dev/ttyACM0')
 	port = 6;
 	while 1:
 		sleep(1);

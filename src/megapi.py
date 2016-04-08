@@ -49,7 +49,8 @@ class mSerial():
 
     def close(self):
         self.ser.close()
-
+M1 = 9
+M2 = 10
 A0 = 14
 A1 = 15
 A2 = 16
