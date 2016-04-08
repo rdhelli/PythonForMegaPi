@@ -35,7 +35,7 @@ REQUIREMENTS = [
        
 setup(
 	name = 'megapi',
-	version = '0.1.1',
+	version = '0.1.3',
 	license = 'MIT',    
 	author = 'ander',                       
 	author_email = 'ander@makeblock.cc',
