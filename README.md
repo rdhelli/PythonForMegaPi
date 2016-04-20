@@ -26,11 +26,11 @@
  * python your code
 
 ### Wiring
-* using MegaPi
+* Using MegaPi
  ![image](https://raw.githubusercontent.com/Makeblock-official/PythonForMegaPi/master/images/megapi.jpg)
 * Using Me Shield for Raspberry Pi and RJ25 cable for Me Orion or Me Baseboard.
  ![image](https://raw.githubusercontent.com/Makeblock-official/PythonForMegaPi/master/images/baseboard-pi-shield.jpg)
-* using USB Cable for Me Orion or Me Baseboard
+* Using USB Cable for Me Orion or Me Baseboard
  ![image](https://raw.githubusercontent.com/Makeblock-official/PythonForMegaPi/master/images/baseboard-usb-cable.jpg)
 
 ## Python API
@@ -93,6 +93,9 @@
  	  * **gyroRead** ( axis, **def** onResult )
  	* Compass
  	  * **compassRead** ( **def** onResult )
+ 	* Pressure Sensor for BMP085 and BMP180
+ 	  * **pressureSensorBegin** ( ) 
+ 	  * **pressureSensorRead** ( type, **def** onResult ) #1:Pressure #2:Temperature #3:Altitude #4:Real altitude #5:Sealevel Pressure
  	
  * Display
  	* RGB Led
