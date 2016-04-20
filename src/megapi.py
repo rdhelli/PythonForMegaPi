@@ -183,6 +183,12 @@ class MegaPi():
     def gyroRead(self,axis,callback):
         self.__writeRequestPackage(6,axis,callback)
 
+	def pressureSensorBegin(self):
+        self.__writePackage(bytearray([0xff,0x55,0x3,0x0,0x2,29]))
+		
+    def pressureSensorRead(self,type,callback):
+        self.__writeRequestPackage(29,type,callback)
+
     def digitalWrite(self,pin,level):
         self.__writePackage(bytearray([0xff,0x55,0x5,0x0,0x2,0x1e,pin,level]))
 
@@ -250,7 +256,7 @@ class MegaPi():
         for i in range(len(arr)):
             arr[i] = ord(arr[i]);
         self.__writePackage(bytearray([0xff,0x55,8+len(arr),0,0x2,41,port,1,self.char2byte(x),self.char2byte(7-y),len(arr)]+arr))
-
+		
     def ledMatrixDisplay(self,port,x,y,buffer):
         self.__writePackage(bytearray([0xff,0x55,7+len(buffer),0,0x2,41,port,2,x,7-y]+buffer))
 
