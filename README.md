@@ -116,3 +116,5 @@
 	  * **shutterOff** ( port )
 	  * **focusOn** ( port )
 	  * **focusOff** ( port )
+
+###Learn more from Makeblock official website: www.makeblock.com
