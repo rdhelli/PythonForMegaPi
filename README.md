@@ -119,7 +119,7 @@
 
 ###Learn more from Makeblock official website: www.makeblock.com
 
-#恢复硬件串口的方法#
+###恢复硬件串口的方法
 1. 下载pi3-miniuart-bt-overlay
 http://ukonline2000.com/?attachment_id=881
 
@@ -134,7 +134,7 @@ sudo nano /boot/cmdline.txt
 参考下面内容修改:
 dwc_otg.lpm_enable=0 console=serial1,115200  console=tty1 root=/dev/mmcblk0p2  kgdboc=serial1,115200 rootfstype=ext4 elevator=deadline fsck.repair=yes  rootwait
 
-#关闭板载蓝牙的方法#
+###关闭板载蓝牙的方法
 1.SSH登录树莓派3后，输入下面命令关闭hciuart使用uart0.
 sudo systemctl disable hciuart
 2.编辑/lib/systemd/system/hciuart.service 将 “ttyAMA0”修改为“ttyS0”
@@ -148,7 +148,7 @@ raspberry
 apt-get install python-pip
 apt-get install pyserial
 
-#安装串口调试工具#
+###安装串口调试工具
 apt-get install minicom
 连接串口
 minicom -b 115200 -o -D /dev/ttyAMA0
