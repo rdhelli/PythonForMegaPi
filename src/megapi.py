@@ -180,10 +180,14 @@ class MegaPi():
     def buttonRead(self,port,callback):
         self.__writeRequestPackage(22,port,callback)
 
-    def gyroRead(self,axis,callback):
-        self.__writeRequestPackage(6,axis,callback)
+    def gyroRead(self,port,axis,callback):
+        deviceId = 6;
+        extId = (((port+axis)<<4)+deviceId)&0xff
+        print ("extID:",extId)
+        self.__doCallback(extId,callback)
+        self.__writePackage(bytearray([0xff,0x55,0x5,extId,0x1,deviceId,port,axis]))
 
-	def pressureSensorBegin(self):
+    def pressureSensorBegin(self):
         self.__writePackage(bytearray([0xff,0x55,0x3,0x0,0x2,29]))
 		
     def pressureSensorRead(self,type,callback):
@@ -310,9 +314,11 @@ class MegaPi():
     def readFloat(self, position):
         v = [self.buffer[position], self.buffer[position+1],self.buffer[position+2],self.buffer[position+3]]
         return struct.unpack('<f', struct.pack('4B', *v))[0]
+
     def readShort(self, position):
         v = [self.buffer[position], self.buffer[position+1]]
         return struct.unpack('<h', struct.pack('2B', *v))[0]
+
     def readString(self, position):
         l = self.buffer[position]
         position+=1

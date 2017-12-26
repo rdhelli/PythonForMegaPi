@@ -13,6 +13,36 @@
  * On your Raspberry Pi, disable the login prompt from Desktop->Menu->Preferences->Raspberry Pi Configuration.
 
 ![image](https://raw.githubusercontent.com/Makeblock-official/PythonForMegaPi/master/images/serial.jpg)
+
+* If you are using raspberry 3 B+，since the Bluetooth function takes up the ttyAMA0 port, You have two ways to solve this problem.
+
+
+1. Disable the pi3 bluetooth and restore UART0/ttyAMA0 over GPIOs 14&15
+
+2. Switch pi3 blutooth function to use the mini-UART(ttyS0) and restore UART0/ttyAMA0 over GPIOs 14&15. 
+
+* Here, I disable the pi3 bluetooth as an example
+
+1. Search `pi3-disable-bt` in file `/boot/overlays/README`, it will show you, how to disable the bluetooth, if you want switch the bluetooth to mini-UART(ttyS0), you can search `pi3-miniuart-bt` 
+
+![image](https://raw.githubusercontent.com/Makeblock-official/PythonForMegaPi/master/images/pi3-disable-bt.jpg)
+
+2. Modify the file `/boot/config.txt`, At the end of the file, add the following content
+```
+#Enable uart
+enable_uart=1
+dtoverlay=pi3-disable-bt
+```
+
+![image](https://raw.githubusercontent.com/Makeblock-official/PythonForMegaPi/master/images/configTxt.jpg)
+
+3. reboot the raspberry pi
+
+4. open the Terminal and input the command `sudo systemctl disable hciuart`
+
+5. Now you can use ttyAMA0 as UART over GPIOs 14&15 
+
+
  * install python library for Makeblock
  ```
  sudo pip install megapi
@@ -118,42 +148,3 @@
 	  * **focusOff** ( port )
 
 ###Learn more from Makeblock official website: www.makeblock.com
-
-### 恢复硬件串口的方法
-
-1. 下载pi3-miniuart-bt-overlay
-http://ukonline2000.com/?attachment_id=881
-
-2.编辑/boot目录下的config.txt文件
-sudo nano /boot/config.txt
-添加下面两行:
-dtoverlay=pi3-miniuart-bt-overlay
-force_turbo=1
-
-3.编辑/boot目录下的cmdline.txt文件
-sudo nano /boot/cmdline.txt
-
-参考下面内容修改:
-dwc_otg.lpm_enable=0 console=serial1,115200  console=tty1 root=/dev/mmcblk0p2  kgdboc=serial1,115200 rootfstype=ext4 elevator=deadline fsck.repair=yes  rootwait
-
-### 关闭板载蓝牙的方法
-1.SSH登录树莓派3后，输入下面命令关闭hciuart使用uart0.
-sudo systemctl disable hciuart
-
-2.编辑/lib/systemd/system/hciuart.service 将 “ttyAMA0”修改为“ttyS0”
-sudo nano /lib/systemd/system/hciuart.service
-将 “ttyAMA0”修改为“ttyS0”
-
-3.重启
-树莓派默认用户名和密码：
-pi
-raspberry
-
-apt-get install python-pip
-apt-get install pyserial
-
-### 安装串口调试工具
-apt-get install minicom
-
-连接串口
-minicom -b 115200 -o -D /dev/ttyAMA0
