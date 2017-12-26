@@ -120,7 +120,7 @@ dtoverlay=pi3-disable-bt
  	* Joystick
  	  * **joystickRead** ( port, axis, **def** onResult )
  	* 3-Axis Accelerometer and Gyro Sensor
- 	  * **gyroRead** ( axis, **def** onResult )
+ 	  * **gyroRead** ( port，axis, **def** onResult )
  	* Compass
  	  * **compassRead** ( **def** onResult )
  	* Pressure Sensor for BMP085 and BMP180
