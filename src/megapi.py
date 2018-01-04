@@ -336,7 +336,7 @@ class MegaPi():
         l = self.buffer[position]
         position+=1
         s = ""
-        for i in Range(l):
+        for i in range(l):
             s += self.buffer[position+i].charAt(0)
         return s
     def readDouble(self, position):
