@@ -183,7 +183,6 @@ class MegaPi():
     def gyroRead(self,port,axis,callback):
         deviceId = 6;
         extId = (((port+axis)<<4)+deviceId)&0xff
-        print ("extID:",extId)
         self.__doCallback(extId,callback)
         self.__writePackage(bytearray([0xff,0x55,0x5,extId,0x1,deviceId,port,axis]))
 
@@ -209,42 +208,56 @@ class MegaPi():
         self.__writePackage(bytearray([0xff,0x55,0x6,0x0,0x2,0xb,port,slot,angle]))
 
     def encoderMotorRun(self,slot,speed):
-        deviceId = 61;
-        self.__writePackage(bytearray([0xff,0x55,0x8,0,0x2,deviceId,0,slot,1]+self.short2bytes(speed)))
+        deviceId = 62;
+        self.__writePackage(bytearray([0xff,0x55,0x07,0x00,0x02,deviceId,0x02,slot]+self.short2bytes(speed)))
 
     def encoderMotorMove(self,slot,speed,distance,callback):
-        deviceId = 61;
+        deviceId = 62;
         extId = ((slot<<4)+deviceId)&0xff
         self.__doCallback(extId,callback)
-        self.__writePackage(bytearray([0xff,0x55,12,extId,0x2,deviceId,0,slot,2]+self.short2bytes(speed)+self.long2bytes(distance)))
-
-    def encoderMotorMoveTo(self,slot,speed,position,callback):
-        deviceId = 61;
+        self.__writePackage(bytearray([0xff,0x55,0x0b,extId,0x02,deviceId,0x01,slot]+self.long2bytes(distance)+self.short2bytes(speed)))
+    
+    def encoderMotorMoveTo(self,slot,speed,distance,callback):
+        deviceId = 62;
         extId = ((slot<<4)+deviceId)&0xff
         self.__doCallback(extId,callback)
-        self.__writePackage(bytearray([0xff,0x55,12,extId,0x2,deviceId,0,slot,3]+self.short2bytes(speed)+self.long2bytes(position)))
+        self.__writePackage(bytearray([0xff,0x55,0x0b,extId,0x02,deviceId,0x06,slot]+self.long2bytes(distance)+self.short2bytes(speed)))
 
+    def encoderMotorSetCurPosZero(self,slot):
+        deviceId = 62;
+        self.__writePackage(bytearray([0xff,0x55,0x05,0x00,0x02,deviceId,0x04,slot]))
 
     def encoderMotorPosition(self,slot,callback):
-        self.__writeRequestPackage(61,slot,1,callback)
+        deviceId = 61;
+        extId = ((slot<<4)+deviceId)&0xff
+        self.__doCallback(extId,callback)
+        self.__writePackage(bytearray([0xff,0x55,0x06,extId,0x01,deviceId,0x00,slot,0x01]))
 
     def encoderMotorSpeed(self,slot,callback):
-        self.__writeRequestPackage(61,slot,2,callback)
-
-    def stepperMotorRun(self,port,speed):
-        self.__writePackage(bytearray([0xff,0x55,0x7,0,0x2,62,port,0x1]+self.short2bytes(speed)))
-
-    def stepperMotorMove(self,port,distance):
-        deviceId = 62;
+        deviceId = 61;
         extId = ((slot<<4)+deviceId)&0xff
         self.__doCallback(extId,callback)
-        self.__writePackage(bytearray([0xff,0x55,11,extId,0x2,deviceId,port,2]+self.short2bytes(speed)+self.long2bytes(distance)))
+        self.__writePackage(bytearray([0xff,0x55,0x06,extId,0x01,deviceId,0x00,slot,0x02]))
 
-    def stepperMotorMoveTo(self,port,position):
-        deviceId = 62;
-        extId = ((slot<<4)+deviceId)&0xff
+    def stepperMotorRun(self,slot,speed):
+        deviceId = 76;
+        self.__writePackage(bytearray([0xff,0x55,0x07,0x00,0x02,deviceId,0x02,slot]+self.short2bytes(speed)))
+
+    def stepperMotorMove(self,port,speed,distance,callback):
+        deviceId = 76;
+        extId = ((port<<4)+deviceId)&0xff
         self.__doCallback(extId,callback)
-        self.__writePackage(bytearray([0xff,0x55,11,extId,0x2,deviceId,port,3]+self.short2bytes(speed)+self.long2bytes(position)))
+        self.__writePackage(bytearray([0xff,0x55,0x0b,extId,0x02,deviceId,0x01,port]+self.long2bytes(distance)+self.short2bytes(speed)))
+
+    def stepperMotorMoveTo(self,port,speed,distance,callback):
+        deviceId = 76;
+        extId = ((port<<4)+deviceId)&0xff
+        self.__doCallback(extId,callback)
+        self.__writePackage(bytearray([0xff,0x55,0x0b,extId,0x02,deviceId,0x06,port]+self.long2bytes(distance)+self.short2bytes(speed)))
+    
+    def stepperMotorSetCurPosZero(self,port):
+        deviceId = 76;
+        self.__writePackage(bytearray([0xff,0x55,0x05,0x00,0x02,deviceId,0x04,port]))
 
     def rgbledDisplay(self,port,slot,index,red,green,blue):
         self.__writePackage(bytearray([0xff,0x55,0x9,0x0,0x2,18,port,slot,index,int(red),int(green),int(blue)]))

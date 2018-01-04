@@ -84,8 +84,10 @@ dtoverlay=pi3-disable-bt
 	  * **encoderMotorRun**( port, speed )
 	  * **encoderMotorMove**( port, speed, distance, **def** onFinish )
 	  * **encoderMotorMoveTo**( port, speed, position, **def** onFinish )
+	  * **encoderMotorSetCurPosZero**( slot )
+	  * **encoderMotorPosition**( slot, **def** onResult)
+	  * **encoderMotorSpeed**( slot, **def** onResult)
 	* Stepper Motor
-	  * **stepperMotorSetting**( port, microsteps, acceleration )
 	  * **stepperMotorRun**( port, speed )
 	  * **stepperMotorMove**( port, speed, distance, **def** onFinish )
 	  * **stepperMotorMoveTo**( port, speed, position, **def** onFinish )

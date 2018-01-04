@@ -35,9 +35,9 @@ REQUIREMENTS = [
        
 setup(
 	name = 'megapi',
-	version = '0.1.6',
+	version = '0.1.7',
 	license = 'MIT',    
-	author = 'ander',                       
+	author = 'ander,Mark',                       
 	author_email = 'ander@makeblock.cc',
 	url = 'http://www.makeblock.com',
 	description = 'python for megapi',

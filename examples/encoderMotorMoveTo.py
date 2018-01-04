@@ -11,8 +11,9 @@ def onBackwardFinish(slot):
 if __name__ == '__main__':
 	bot = MegaPi()
 	bot.start()
-	bot.encoderMotorRun(3,0);
+	bot.encoderMotorRun(4,0);
+	bot.encoderMotorSetCurPosZero(4);
 	sleep(1);
-	onForwardFinish(3);
+	onForwardFinish(4);
 	while 1:
 		continue;
