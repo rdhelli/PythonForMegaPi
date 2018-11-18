@@ -147,8 +147,11 @@ class MegaPi():
     def limitSwitchRead(self,port,callback):
         self.__writeRequestPackage(21,port,callback)
 
-    def temperatureRead(self,port,callback):
-        self.__writeRequestPackage(2,port,callback)
+    def temperatureRead(self,port,slot,callback):
+        deviceId = 2
+        extId = ((port<<4)+deviceId)&0xff
+        self.__doCallback(extId,callback)
+        self.__writePackage(bytearray([0xff,0x55,0x5,extId,0x1,deviceId,port,slot]))
 
     def touchSensorRead(self,port,callback):
         self.__writeRequestPackage(15,port,callback)
