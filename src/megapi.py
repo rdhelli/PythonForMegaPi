@@ -260,7 +260,7 @@ class MegaPi():
         self.__writePackage(bytearray([0xff,0x55,0x05,0x00,0x02,deviceId,0x04,port]))
 
     def rgbledDisplay(self,port,slot,index,red,green,blue):
-        self.__writePackage(bytearray([0xff,0x55,0x9,0x0,0x2,18,port,slot,index,int(red),int(green),int(blue)]))
+        self.__writePackage(bytearray([0xff,0x55,0x9,0x0,0x2,0x8,port,slot,index,int(red),int(green),int(blue)]))
 
     def rgbledShow(self,port,slot):
         self.__writePackage(bytearray([0xff,0x55,0x5,0x0,0x2,19,port,slot]))
