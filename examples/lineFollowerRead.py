@@ -1,7 +1,7 @@
 from megapi import *
 
 def onRead(v):
-	print "line:"+str(v);
+	print("line:"+str(v));
 
 if __name__ == '__main__':
 	bot = MegaPi()

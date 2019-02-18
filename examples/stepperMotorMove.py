@@ -6,7 +6,7 @@ def onForwardFinish(slot):
 
 def onBackwardFinish(slot):
 	sleep(0.4);
-	print slot;
+	print(slot);
 	bot.stepperMotorMove(slot,3000,3000,onForwardFinish);
 
 if __name__ == '__main__':

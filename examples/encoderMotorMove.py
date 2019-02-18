@@ -6,7 +6,7 @@ def onForwardFinish(slot):
 
 def onBackwardFinish(slot):
 	sleep(0.4);
-	print slot;
+	print("slot")
 	bot.encoderMotorMove(slot,100,1000,onForwardFinish);
 
 if __name__ == '__main__':
