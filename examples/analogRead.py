@@ -1,7 +1,7 @@
 from megapi import *
 
 def onRead(level):
-	print level;
+	print("level")
 
 if __name__ == '__main__':
 	bot = MegaPi()

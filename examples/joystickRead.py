@@ -11,7 +11,7 @@ def onReadX(v):
 def onReadY(v):
 	global axisY;
 	axisY = v;
-	print axisX,axisY;
+	print(axisX,axisY);
 
 if __name__ == '__main__':
 	bot = MegaPi()

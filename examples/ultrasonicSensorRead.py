@@ -1,7 +1,7 @@
 from megapi import *
 
 def onRead(v):
-	print "distance:"+str(v)+" cm";
+	print("distance:"+str(v)+" cm");
 
 if __name__ == '__main__':
 	bot = MegaPi()
